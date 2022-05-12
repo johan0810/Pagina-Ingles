@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+
+<body>
+    <!-- <div id="app"> -->
+    <header>
+
+
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view"><img src="perfil.jpg" alt="" id="perfil">
+                    <h5>Johan Quiñones</h5>
+                </div>
+
+            </li>
+        </ul>
+    </header>
+    <modales>
+
+
+        <!--MODAL 1-->
+
+        <div class="modal1">
+            <!-- Modal Trigger -->
+
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <div class="row">
+
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <img src="perfil.jpg" id="perfil" name="image" type="text" class="validate"
+                                        v-model="edit_product.image">
+
+
+                                    <label for="first_name"></label>
+                                </div>
+
+                                <div class="input-field col s6">
+                                    <input name="image" type="text" class="validate" v-model="edit_product.image">
+
+
+                                    <label for="first_name">Imagen</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input name="name" type="text" class="validate" v-model="edit_product.name">
+
+
+                                    <label for="first_name">Nombre</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input name="price" type="number" class="validate" v-model="edit_product.price">
+
+                                    <label for="last_name">Precio</label>
+                                    {{errors.image}}
+                                </div>
+
+
+                                <div class="input-field col s6">
+                                    <input name="code" type="number" class="validate" v-model="edit_product.code">
+
+                                    <label for="disabled">Codigo</label>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input name="inventory" type="number" class="validate"
+                                            v-model="edit_product.inventory">
+                                        <label for="password">Inventario</label>
+                                    </div>
+
+
+                                    <div class="input-field col s6">
+                                        <input name="top" type="number" class="validate" v-model="edit_product.top">
+                                        <label for="password">Top</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="guarcan">
+                        <!-- <a href="#!" @click="destroy()"
+                            class="modal-close waves-effect waves-green btn-flat">Eliminar</a> -->
+                        <a href="#!" @click="update()"
+                            class="modal-close waves-effect waves-green btn-flat green">Guardar</a>
+                        <a href="#!" @click="cancel_modal()"
+                            class="modal-close waves-effect waves-green btn-flat pink">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL 1.1 -->
+
+        <!-- <div id="modal1_1" class="modal modal-fixed-footer">
+                <i class="modal-close waves-effect waves-green btn-flat" id="cerrar" href="#" @click=""><i
+                        class="material-icons">close</i></i>
+                <div class="modal-content" id="row">
+                    <div class="row" id="row2">
+
+                        <form class="col s12" id="row4">
+                            <div class="row" id="row3">
+                                <div class="input-field col s6">
+                                    <img src="perfil.jpg" id="perfil2" name="image" type="text" class="validate"
+                                        disabled value="I am not editable" v-model="edit_product.image">
+
+
+                                    <label for="first_name"></label>
+                                </div>
+
+                                <div class="input-field col s6">
+                                    <input disabled value="I am not editable" name="image" type="text" class="validate"
+                                        v-model="edit_product.image">
+
+
+                                    <label for="first_name">Imagen</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input disabled value="I am not editable" name="name" type="text" class="validate"
+                                        v-model="edit_product.name">
+
+
+                                    <label for="first_name">Nombre</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input disabled value="I am not editable" name="price" type="number"
+                                        class="validate" v-model="edit_product.price">
+
+                                    <label for="last_name">Precio</label>
+                                </div>
+
+
+                                <div class="input-field col s6">
+                                    <input disabled value="I am not editable" name="code" type="number" class="validate"
+                                        v-model="edit_product.code">
+
+                                    <label for="disabled">Codigo</label>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input disabled value="I am not editable" name="inventory" type="number"
+                                            class="validate" v-model="edit_product.inventory">
+                                        <label for="password">Inventario</label>
+                                    </div>
+                                    <div class="col s12" id="s12">
+
+                                        <br>
+
+                                        <a href="#modal1" @click="edit(p)"
+                                            class="modal-close waves-effect waves-green btn-flat blue">Editar <i
+                                                class="material-icons">create</i></a>
+                                        <a href="#!" @click="destroy()"
+                                            class="modal-close waves-effect waves-green btn-flat pink">Eliminar <i
+                                                class="material-icons">delete</i></a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> -->
+
+        <!--MODAL 2-->
+
+        <div class="modal2">
+            <!-- Modal Trigger -->
+            <!-- <a class="waves-effect waves-light btn modal-trigger red" href="#modal2">Agregar</a> -->
+
+            <!-- Modal Structure -->
+            <!-- <div id="modal2" class="modal">
+                    <div class="row">
+
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="disabled" type="text" class="validate" v-model="product.image">
+
+
+                                    <label for="first_name">Imagen</label>
+                                    <span class="error">
+                                        {{errors.image}}
+                                    </span>
+                                </div>
+
+                                <div class="input-field col s6">
+                                    <input id="disabled" type="text" class="validate" v-model="product.name">
+
+
+                                    <label for="first_name">Nombre</label>
+                                    <span class="error">
+                                        {{errors.name}}
+                                    </span>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="disabled" type="number" class="validate" v-model="product.price">
+
+                                    <label for="last_name">Precio</label>
+                                    <span class="error">
+                                        {{errors.price}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+
+                                    <input id="disabled" type="number" class="validate" v-model="product.code">
+
+                                    <label for="disabled">Codigo</label>
+
+                                    <span class="error">
+                                        {{errors.code}}
+                                    </span>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="disabled" type="number" class="validate" v-model="product.inventory">
+                                    <label for="password">Inventario</label>
+                                    <span class="error">
+                                        {{errors.inventory}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="disabled" type="number" class="validate" v-model="product.top">
+                                    <label for="password">Top</label>
+                                    <span class="error">
+                                        {{errors.top}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+
+                                    <div class="input-field inline">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a @click="store()" href="#!">Hecho</a>
+                        <a @click="cancel_modal()" href="#!"
+                            class="modal-close waves-effect waves-green btn-flat">Descartar</a>
+                    </div>
+                </div>
+            </div> -->
+
+    </modales>
+
+
+
+
+
+    <div class="container-body">
+        <aside>
+            <a href="#uno"><i class="material-icons " id="cuenta">home</i></a>
+
+            <!-- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons "
+                            id="cuenta">star_half</i></a> -->
+
+            <a href="#dos"><i class="material-icons " id="cuenta">shopping_cart</i></a>
+        </aside>
+
+        <main>
+            <div id="uno">
+                <nav id="titulo">
+                    <div class=" darken-1 nav-wrapper">
+                        <a href="#seccion" class="center brand-logo">PROYECTS ASYNC</a>
+                    </div>
+                </nav>
+                <div id="imagen">
+                    <img src="img/logo.png" alt="">
+                </div>
+
+
+
+
+                <!-- <div class="nav-wrapper">
+                        <form>
+                            <div class="blue input-field" id="nav">
+                                <input id="search" type="search" required>
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                    </div> -->
+
+
+                <div id="texto">
+                    <h3>SERVICES <i class="material-icons " id="cart"></i></h3>
+                </div>
+
+                <div id="seccion">
+                    <div class="seccion-i">
+
+
+                        <!-- <div class="product" v-for="p in product_list"> -->
+
+
+                        <article id="img">
+                            <h4>Repair <i class="material-icons " id="cart"></i></h4>
+                        </article>
+                        <article id="img">
+                            <h4>Maintenance<i class="material-icons " id="cart"></i></h4>
+                        </article>
+                        <article id="img">
+                            <h4>Audit<i class="material-icons " id="cart"></i></h4>
+                        </article>
+                        <article id="img">
+                            <h4>Advisory <i class="material-icons " id="cart"></i></h4>
+                        </article>
+                        <article id="img">
+                            <h4>Messenger service <i class="material-icons " id="cart"></i></h4>
+                        </article>
+                        <article id="img">
+                            <h4>Telephony <i class="material-icons " id="cart"></i></h4>
+                        </article>
+
+                        <!-- </div> -->
+
+                    </div>
+                </div>
+            </div>
+            <div id="dos">
+
+
+                <div id="texto">
+                    <h3>INFORMATION <i class="material-icons " id="cart">shopping_cart</i></h3>
+                </div>
+
+                <div id="seccion">
+                    <div class="seccion-i">
+
+
+                        <article id="info">
+                            <h4>Tel: 3113208934<br>E-MAIL: IndustriesAsy@hotmail.com<br>ADDRESS: Cll-19 383 B- Oficinas de Dubai<i class="material-icons " id="cart"></i></h4>
+                        </article>
+                    </div>
+                </div>
+                <div id="agregar"><a class="waves-effect waves-light btn blue" id="agregar" @click="create()"
+                        href="#modal2">Producs</a></div>
+            </div>
+    </div>
+    <!-- </div> -->
+    </main>
+
+    </div>
+
+
+    </div>
+
+
+    <!-- Compiled and minified JavaScript -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3"></script> -->
+    <script src="vue@3.2.23/vue.global.js"></script>
+    <script src="app.js"> </script>
+    <script> M.AutoInit();</script>
+</body>
